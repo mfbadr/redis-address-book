@@ -1,0 +1,19 @@
+extends ../shared/template
+block content
+  h2 New User
+  .panel.panel-default
+    .panel-body
+      .row
+        .col-xs-12.col-sm-4
+          form(method='post', action='/register')
+            .form-group
+              label(for='email') Email
+              input#email.form-control(type='email', autofocus=true, name='email')
+            .form-group
+              label(for='password') Password
+              input#email.form-control(type='password', name='password')
+            button.btn.btn-primary(type='sumit') Register
+
+block scripts
+  script(src='/js/user/home.js')
+
