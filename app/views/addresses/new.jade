@@ -1,0 +1,22 @@
+extends ../shared/template
+block content
+  h2 New User
+  .panel.panel-default
+    .panel-body
+      .row
+        .col-xs-12.col-sm-4
+          form(method='post', action='/addresses')
+            .form-group
+              label(for='name') Name
+              input#name.form-control(type='text', autofocus=true, name='name')
+            .form-group
+              label(for='color') Color
+              input#color.form-control(type='color', name='color')
+            .form-group
+              label(for='twitter') Twitter
+              input#twitter.form-control(type='text', name='twitter')
+            button.btn.btn-primary(type='sumit') Register
+
+block scripts
+  script(src='/js/user/home.js')
+

@@ -1,0 +1,23 @@
+extends ../shared/template
+block content
+  h2 Addresses
+  .panel.panel-default
+    .panel-body
+      table.table.table-striped.table-hover
+        thead
+          tr
+            th Name
+            th Color
+            th Twitter
+        tbody
+          each address in addresses
+            tr
+              td= address.name
+              td(style="background-color:#{address.color}")
+              td= address.twitter
+
+
+
+block scripts
+  script(src='/js/user/home.js')
+

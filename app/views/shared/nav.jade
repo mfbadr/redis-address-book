@@ -10,6 +10,15 @@
 
     .collapse.navbar-collapse#bs-navbar-collapse
       ul.nav.navbar-nav.navbar-right
-        li: a(href='/register') Register
-        li: a(href='/login') Login
+        if user
+          li: a(href='/addresses') Addresses
+          li: a(href='/addresses/new') Add an Address
+          li
+            form(method='post', action='/logout')
+              input(type='hidden', name='_method', value='delete')
+              button.btn.btn-danger(type='submit')= user.email
+        else
+          li: a(href='/login') Login
+          li: a(href='/register') Register
+
 

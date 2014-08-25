@@ -5,6 +5,7 @@ var morgan         = require('morgan'),
     methodOverride = require('express-method-override'),
     less           = require('less-middleware'),
     users          = require('../controllers/users'),
+    addresses      = require('../controllers/addresses'),
     session        = require('express-session'),
     RedisStore     = require('connect-redis')(session), //link the two
     security       = require('../lib/security'),
@@ -25,8 +26,6 @@ module.exports = function(app, express){
     saveUninitialized:true,
     cookie:{maxAge:null}
   }));
-  //
-  //authentication step(session), //link the two
   app.use(security.authenticate);
 
   app.get('/', home.index);
@@ -34,6 +33,13 @@ module.exports = function(app, express){
   app.post('/register', users.create);
   app.get('/login', users.login);
   app.post('/login', users.authenticate);
+
+  app.use(security.bounce); //sites below require a log in to be viewed
+
+  app.delete('/logout', users.logout);
+  app.get('/addresses', addresses.index);
+  app.get('/addresses/new', addresses.new);
+  app.post('/addresses', addresses.create);
 
   console.log('Express: Routes Loaded');
 };
